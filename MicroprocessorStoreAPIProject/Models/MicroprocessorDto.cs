@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace MicroprocessorStoreLibrary
+namespace MicroprocessorStoreAPIProject.Models
 {
-    public class Microprocessor
+    public class MicroprocessorDto
     {
-        public Microprocessor()
-        {
-
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MicroprocessorStoreLibrary
 {
-    class MicroprocessorStoreDBContext : DbContext
+    public partial class MicroprocessorStoreDBContext : DbContext
     {
         public MicroprocessorStoreDBContext()
         {
