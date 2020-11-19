@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MicroprocessorStoreLibrary
 {
-    public class Class1
+    class Store
     {
     }
 }
