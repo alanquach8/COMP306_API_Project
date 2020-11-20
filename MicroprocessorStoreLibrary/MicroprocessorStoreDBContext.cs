@@ -17,6 +17,7 @@ namespace MicroprocessorStoreLibrary
 
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<Microprocessor> Microprocessor { get; set; }
+        public virtual DbSet<Availability> Availability { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySQL("server = localhost; port = 3306; database = COMP306ProjectLocalDB; user = root; password = password");
@@ -58,6 +59,32 @@ namespace MicroprocessorStoreLibrary
                     .HasColumnName("DESCRIPTION")
                     .HasColumnType("varchar")
                     .HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<Availability>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("ID");
+
+                entity.HasIndex(e => e.StoreId);
+
+                entity.HasIndex(e => e.MicroprocessorId);
+
+                entity.Property(e => e.Quantity)
+                    .HasColumnName("QUANTITY")
+                    .HasColumnType("int");
+
+                entity.Property(e => e.Price)
+                    .HasColumnName("PRICE")
+                    .HasColumnType("decimal");
+
+                entity.HasOne(s => s.Store)
+                    .WithMany(a => a.Availability)
+                    .HasForeignKey(s => s.StoreId);
+
+                entity.HasOne(m => m.Microprocessor)
+                    .WithMany(a => a.Availability)
+                    .HasForeignKey(m => m.MicroprocessorId);
             });
         }
     }
