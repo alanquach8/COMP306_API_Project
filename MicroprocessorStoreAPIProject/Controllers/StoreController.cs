@@ -51,5 +51,38 @@ namespace MicroprocessorStoreAPIProject.Controllers
             var storeResult = _mapper.Map<StoreDto>(store);
             return Ok(storeResult);
         }
+
+        // POST /AddStore
+        // JSON: { "name": "Name of new store", "address": "Address of new store" }
+        [HttpPost]
+        [Route("AddStore")]
+        public async Task<ActionResult<Store>> AddCity([FromBody] Store newStore)
+        {
+            await _microprocessorStoreRepository.AddStore(newStore);
+
+            var storeResult = _mapper.Map<StoreDto>(newStore);
+            return Ok(storeResult);
+        }
+
+        // PUT /UpdateStore/{id}
+        // JSON: { "name": "New name", "address": "New address" }
+        [HttpPut]
+        [Route("UpdateStore/{id}")]
+        public async Task<ActionResult<Store>> UpdateCity(int id, [FromBody] Store store)
+        {
+            store.Id = id;
+            await _microprocessorStoreRepository.UpdateStore(store);
+
+            var storeResult = _mapper.Map<StoreDto>(store);
+            return Ok(storeResult);
+        }
+
+        // DELETE /DeleteStore/{id}
+        [HttpDelete]
+        [Route("DeleteStore/{id}")]
+        public async Task<string> DeleteStore(int id)
+        {
+            return await _microprocessorStoreRepository.DeleteStore(id);
+        }
     }
 }

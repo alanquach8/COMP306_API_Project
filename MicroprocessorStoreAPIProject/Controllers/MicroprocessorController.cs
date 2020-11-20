@@ -51,5 +51,41 @@ namespace MicroprocessorStoreAPIProject.Controllers
             var microprocessorResult = _mapper.Map<MicroprocessorDto>(microprocessor);
             return Ok(microprocessorResult);
         }
+
+
+
+
+        // POST /AddMicroprocessor
+        // JSON: { "name": "Name of new microprocessor", "description": "Description of new microprocessor" }
+        [HttpPost]
+        [Route("AddMicroprocessor")]
+        public async Task<ActionResult<Microprocessor>> AddMicroprocessor([FromBody] Microprocessor newMicroprocessor)
+        {
+            await _microprocessorStoreRepository.AddMicroprocessor(newMicroprocessor);
+
+            var microprocessorResult = _mapper.Map<MicroprocessorDto>(newMicroprocessor);
+            return Ok(microprocessorResult);
+        }
+
+        // PUT /UpdateMicroprocessor/{id}
+        // JSON: { "name": "New name", "description": "New description" }
+        [HttpPut]
+        [Route("UpdateMicroprocessor/{id}")]
+        public async Task<ActionResult<Microprocessor>> UpdateMicroprocessor(int id, [FromBody] Microprocessor microprocessor)
+        {
+            microprocessor.Id = id;
+            await _microprocessorStoreRepository.UpdateMicroprocessor(microprocessor);
+
+            var microprocessorResult = _mapper.Map<MicroprocessorDto>(microprocessor);
+            return Ok(microprocessorResult);
+        }
+
+        // DELETE /DeleteMicroprocessor/{id}
+        [HttpDelete]
+        [Route("DeleteMicroprocessor/{id}")]
+        public async Task<string> DeleteMicroprocessor(int id)
+        {
+            return await _microprocessorStoreRepository.DeleteMicroprocessor(id);
+        }
     }
 }

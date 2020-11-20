@@ -15,5 +15,15 @@ namespace MicroprocessorStoreAPIProject.Services
         Task<bool> MicroprocessorExists(int microprocessorId);
         Task<IEnumerable<Microprocessor>> GetMicroprocessors();
         Task<Microprocessor> GetMicroprocessorById(int microprocessorId);
+
+        Task<Store> AddStore(Store store);
+        Task<Store> UpdateStore(Store store);
+        Task<string> DeleteStore(int storeId);
+
+        Task<Microprocessor> AddMicroprocessor(Microprocessor microprocessor);
+        Task<Microprocessor> UpdateMicroprocessor(Microprocessor microprocessor);
+        Task<string> DeleteMicroprocessor(int microprocessorId);
+
+        Task<bool> Save();
     }
 }
