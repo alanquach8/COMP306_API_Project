@@ -27,6 +27,11 @@ namespace MicroprocessorStoreAPIProject.Services
         Task<Store> GetStoreAvailabilities(int storeId);
         Task<Microprocessor> GetMicroprocessorAvailabilities(int microprocessorId);
 
+        Task<Availability> GetAvailabilityById(int availabilityId);
+        Task<Availability> AddAvailability(Availability availability);
+        Task<Availability> UpdateAvailability(Availability availability);
+        Task<string> DeleteAvailability(int availabilityId);
+
         Task<bool> Save();
     }
 }

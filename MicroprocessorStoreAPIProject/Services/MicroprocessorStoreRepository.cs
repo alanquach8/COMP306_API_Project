@@ -133,6 +133,46 @@ namespace MicroprocessorStoreAPIProject.Services
             return await result.FirstOrDefaultAsync();
         }
 
+        public async Task<Availability> GetAvailabilityById(int availabilityId)
+        {
+            IQueryable<Availability> result;
+
+            result = _context.Availability.Where(a => a.Id == availabilityId);
+
+            return await result.FirstOrDefaultAsync();
+        }
+
+        public async Task<Availability> AddAvailability(Availability availability)
+        {
+            _context.Availability.Add(availability);
+            await _context.SaveChangesAsync();
+
+            return await GetAvailabilityById(availability.StoreId);
+        }
+
+        public async Task<Availability> UpdateAvailability(Availability availability)
+        {
+            _context.Availability.Update(availability);
+            await _context.SaveChangesAsync();
+
+            return await GetAvailabilityById(availability.StoreId);
+        }
+
+        public async Task<string> DeleteAvailability(int availabilityId)
+        {
+            try
+            {
+                Availability availabilityToDelete = _context.Availability.Where(a => a.Id == availabilityId).FirstOrDefault();
+                _context.Availability.Remove(availabilityToDelete);
+                await _context.SaveChangesAsync();
+                return "Successfully deleted availability with id " + availabilityToDelete.Id.ToString();
+            }
+            catch (Exception)
+            {
+                return "Fail. Unable to delete availability with id " + availabilityId.ToString();
+            }
+        }
+
         public async Task<bool> Save()
         {
             return (await _context.SaveChangesAsync()) > 0;

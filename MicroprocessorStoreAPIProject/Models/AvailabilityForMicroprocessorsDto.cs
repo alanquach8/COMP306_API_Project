@@ -9,7 +9,7 @@ namespace MicroprocessorStoreAPIProject.Models
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public StoreDto Store { get; set; }
     }
 }

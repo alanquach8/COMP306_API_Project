@@ -16,6 +16,7 @@ namespace MicroprocessorStoreAPIProject.Mappings
             CreateMap<Microprocessor, MicroprocessorDto>();
             CreateMap<Store, StoreWithAvailabilityDto>();
             CreateMap<Microprocessor, MicroprocessorWithAvailabilityDto>();
+            CreateMap<Availability, AvailabilityDto>();
         }
     }
 }

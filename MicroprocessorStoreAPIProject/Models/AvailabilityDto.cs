@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace MicroprocessorStoreAPIProject.Models
 {
-    public class AvailabilityForStoresDto
+    public class AvailabilityDto
     {
         public int Id { get; set; }
+        public int StoreId { get; set; }
+        public int MicroprocessorId { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public MicroprocessorDto Microprocessor { get; set; }
     }
 }
