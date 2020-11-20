@@ -6,3 +6,7 @@ C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\Micro
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\bin\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.runtimeconfig.json
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\bin\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.runtimeconfig.dev.json
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\obj\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.genruntimeconfig.cache
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\bin\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.pdb
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\obj\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.csproj.CoreCompileInputs.cache
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\obj\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.dll
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreLibrary\obj\Debug\netcoreapp3.1\MicroprocessorStoreLibrary.pdb
