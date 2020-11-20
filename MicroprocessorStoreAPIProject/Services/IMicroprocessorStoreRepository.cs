@@ -24,6 +24,9 @@ namespace MicroprocessorStoreAPIProject.Services
         Task<Microprocessor> UpdateMicroprocessor(Microprocessor microprocessor);
         Task<string> DeleteMicroprocessor(int microprocessorId);
 
+        Task<Store> GetStoreAvailabilities(int storeId);
+        Task<Microprocessor> GetMicroprocessorAvailabilities(int microprocessorId);
+
         Task<bool> Save();
     }
 }

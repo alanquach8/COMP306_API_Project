@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MicroprocessorStoreAPIProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class StoreController : ControllerBase
     {
@@ -49,6 +49,22 @@ namespace MicroprocessorStoreAPIProject.Controllers
             }
 
             var storeResult = _mapper.Map<StoreDto>(store);
+            return Ok(storeResult);
+        }
+
+        // GET /GetStoreAvailabilities/{id}
+        [HttpGet]
+        [Route("GetStoreAvailabilities/{id}")]
+        public async Task<ActionResult<Store>> GetStoreAvailabilities(int id)
+        {
+            var store = await _microprocessorStoreRepository.GetStoreAvailabilities(id);
+
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            var storeResult = _mapper.Map<StoreWithAvailabilityDto>(store);
             return Ok(storeResult);
         }
 

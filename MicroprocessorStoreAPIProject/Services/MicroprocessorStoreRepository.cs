@@ -116,6 +116,23 @@ namespace MicroprocessorStoreAPIProject.Services
                 return "Fail. Unable to delete microprocessor with id " + microprocessorId.ToString();
             }
         }
+
+        public async Task<Store> GetStoreAvailabilities(int storeId)
+        {
+            IQueryable<Store> result;
+            result = _context.Store.Include(s => s.Availability).ThenInclude(a => a.Microprocessor).Where(s => s.Id == storeId);
+
+            return await result.FirstOrDefaultAsync();
+        }
+
+        public async Task<Microprocessor> GetMicroprocessorAvailabilities(int microprocessorId)
+        {
+            IQueryable<Microprocessor> result;
+            result = _context.Microprocessor.Include(m => m.Availability).ThenInclude(a => a.Store).Where(m => m.Id == microprocessorId);
+
+            return await result.FirstOrDefaultAsync();
+        }
+
         public async Task<bool> Save()
         {
             return (await _context.SaveChangesAsync()) > 0;

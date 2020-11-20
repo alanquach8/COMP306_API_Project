@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MicroprocessorStoreAPIProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class MicroprocessorController : ControllerBase
     {
@@ -52,8 +52,21 @@ namespace MicroprocessorStoreAPIProject.Controllers
             return Ok(microprocessorResult);
         }
 
+        // GET /GetMicroprocessorAvailabilities/{id}
+        [HttpGet]
+        [Route("GetMicroprocessorAvailabilities/{id}")]
+        public async Task<ActionResult<Store>> GetMicroprocessorAvailabilities(int id)
+        {
+            var microprocessor = await _microprocessorStoreRepository.GetMicroprocessorAvailabilities(id);
 
+            if (microprocessor == null)
+            {
+                return NotFound();
+            }
 
+            var microprocessorResult = _mapper.Map<MicroprocessorWithAvailabilityDto>(microprocessor);
+            return Ok(microprocessorResult);
+        }
 
         // POST /AddMicroprocessor
         // JSON: { "name": "Name of new microprocessor", "description": "Description of new microprocessor" }
