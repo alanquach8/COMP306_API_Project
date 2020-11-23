@@ -377,10 +377,6 @@ namespace MicroprocessorStoreClient.Controllers
             return RedirectToAction("Microprocessors");
         }
 
-
-
-
-
         public async Task<IActionResult> DeleteStoreAvailabilityAsync(int avilabilityid, int storeid)
         {
             HttpClient client = new HttpClient();
@@ -424,6 +420,80 @@ namespace MicroprocessorStoreClient.Controllers
             }
 
             return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = microprocessorid });
+        }
+
+        public IActionResult AddStore()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewStoreAsync()
+        {
+            Store store = new Store()
+            {
+                Name = Request.Form["Name"],
+                Address = Request.Form["Address"]
+            };
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                json = JsonConvert.SerializeObject(store);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync("/api/AddStore", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Stores");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("Stores");
+        }
+
+        public IActionResult AddMicroprocessor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewMicroprocessorAsync()
+        {
+            Microprocessor microprocessor = new Microprocessor()
+            {
+                Name = Request.Form["Name"],
+                Description = Request.Form["Description"]
+            };
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                json = JsonConvert.SerializeObject(microprocessor);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync("/api/AddMicroprocessor", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Microprocessors");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("Microprocessors");
         }
     }
 }
