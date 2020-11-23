@@ -495,5 +495,146 @@ namespace MicroprocessorStoreClient.Controllers
             }
             return RedirectToAction("Microprocessors");
         }
+
+
+
+
+        public async Task<IActionResult> AddAvailabilityForStoreAsync(int storeId)
+        {
+            AddAvailabilityForStoreVM vm = new AddAvailabilityForStoreVM();
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                response = await client.GetAsync("/api/GetStore/" + storeId.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    vm.Store = JsonConvert.DeserializeObject<Store>(json);
+                }
+
+                response = await client.GetAsync("/api/GetMicroprocessors");
+                if (response.IsSuccessStatusCode)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    vm.AllMicroprocessors = JsonConvert.DeserializeObject<IEnumerable<Microprocessor>>(json);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewAvailabilityForStore()
+        {
+            Availability availability = new Availability()
+            {
+                StoreId = Convert.ToInt32(Request.Form["storeId"]),
+                MicroprocessorId = Convert.ToInt32(Request.Form["microprocessorId"]),
+                Quantity = Convert.ToInt32(Request.Form["quantity"]),
+                Price = Convert.ToDouble(Request.Form["price"])
+            };
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                json = JsonConvert.SerializeObject(availability);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync("/api/AddAvailability", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AvailabilitiesForStore", new { id = availability.StoreId });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("AvailabilitiesForStore", new { id = availability.StoreId });
+        }
+
+        public async Task<IActionResult> AddAvailabilityForMicroprocessorAsync(int microprocessorId)
+        {
+            AddAvailabilityForMicroprocessorVM vm = new AddAvailabilityForMicroprocessorVM();
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                response = await client.GetAsync("/api/GetMicroprocessor/" + microprocessorId.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    vm.Microprocessor = JsonConvert.DeserializeObject<Microprocessor>(json);
+                }
+
+                response = await client.GetAsync("/api/GetStores");
+                if (response.IsSuccessStatusCode)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    vm.AllStores = JsonConvert.DeserializeObject<IEnumerable<Store>>(json);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewAvailabilityForMicroprocessor()
+        {
+            Availability availability = new Availability()
+            {
+                StoreId = Convert.ToInt32(Request.Form["storeId"]),
+                MicroprocessorId = Convert.ToInt32(Request.Form["microprocessorId"]),
+                Quantity = Convert.ToInt32(Request.Form["quantity"]),
+                Price = Convert.ToDouble(Request.Form["price"])
+            };
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                json = JsonConvert.SerializeObject(availability);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                response = await client.PostAsync("/api/AddAvailability", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = availability.MicroprocessorId });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = availability.MicroprocessorId });
+        }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model AddAvailabilityForMicroprocessorVM
+
+<h1>Add Availability For @Model.Microprocessor.Name</h1>
+<h3>@Model.Microprocessor.Description</h3>
+<form method="post" asp-controller="MicroprocessorStore" asp-action="AddNewAvailabilityForMicroprocessor">
+    <input type="hidden" name="microprocessorId" value="@Model.Microprocessor.Id" />
+    <label>Store: </label>
+    <select name="storeId">
+        @foreach (Store store in Model.AllStores)
+        {
+            <option value="@store.Id">@store.Name (@store.Address)</option>
+        }
+    </select>
+    <br />
+    <label>Price: </label><input type="text" name="price" />
+    <br />
+    <label>Quantity: </label><input type="text" name="quantity" />
+    <br />
+    <button type="submit">Add</button>
+    <a href="javascript:history.back()">Cancel</a>
+</form>

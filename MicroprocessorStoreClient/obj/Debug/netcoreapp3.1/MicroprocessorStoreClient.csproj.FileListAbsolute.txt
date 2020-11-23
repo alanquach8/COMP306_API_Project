@@ -43,3 +43,5 @@ C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\Micro
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\UpdateMicroprocessor.cshtml.g.cs
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\AddMicroprocessor.cshtml.g.cs
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\AddStore.cshtml.g.cs
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\AddAvailabilityForMicroprocessor.cshtml.g.cs
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\AddAvailabilityForStore.cshtml.g.cs

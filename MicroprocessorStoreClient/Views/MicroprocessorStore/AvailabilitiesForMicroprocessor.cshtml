@@ -8,6 +8,7 @@
 }
 
 <h2>Availabilities</h2>
+<a asp-controller="MicroprocessorStore" asp-action="AddAvailabilityForMicroprocessor" asp-route-microprocessorId="@Model.Id">Add Availability</a>
 @if (Model.NumberOfAvailability > 0)
 {
     <table>
