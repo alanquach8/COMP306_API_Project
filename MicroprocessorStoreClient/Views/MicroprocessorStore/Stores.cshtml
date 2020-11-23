@@ -24,7 +24,8 @@
                     <td>@store.Name</td>
                     <td>@store.Address</td>
                     <td>
-                        <a asp-controller="MicroprocessorStore" asp-action="AvailabilitiesForStore" asp-route-id="@store.Id">Availabilities</a>
+                        <a asp-controller="MicroprocessorStore" asp-action="AvailabilitiesForStore" asp-route-id="@store.Id">Availabilities</a> | 
+                        <a asp-controller="MicroprocessorStore" asp-action="UpdateStore" asp-route-id="@store.Id">Update</a>
                     </td>
                 </tr>
             }

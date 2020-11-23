@@ -39,3 +39,5 @@ C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\Micro
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\MicroprocessorStoreClient.genruntimeconfig.cache
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\AvailabilitiesForStore.cshtml.g.cs
 C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\AvailabilitiesForMicroprocessor.cshtml.g.cs
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\UpdateStore.cshtml.g.cs
+C:\Users\alanq\Desktop\COMP306 - API Project\MicroprocessorStoreAPIProject\MicroprocessorStoreClient\obj\Debug\netcoreapp3.1\Razor\Views\MicroprocessorStore\UpdateMicroprocessor.cshtml.g.cs

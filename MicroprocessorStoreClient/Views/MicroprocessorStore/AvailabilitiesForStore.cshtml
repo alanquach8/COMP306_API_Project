@@ -2,8 +2,13 @@
 
 <h1>@Model.Name</h1>
 
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    <h3>@ViewBag.Message</h3>
+}
+
 <h2>Availabilities</h2>
-@if(Model.NumberOfAvailability > 0)
+@if (Model.NumberOfAvailability > 0)
 {
     <table>
         <thead>
@@ -12,6 +17,7 @@
                 <th>Description</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,8 +26,16 @@
                 <tr>
                     <td>@availability.Microprocessor.Name</td>
                     <td>@availability.Microprocessor.Description</td>
-                    <td>@availability.Price</td>
-                    <td>@availability.Quantity</td>
+                    <form method="post" asp-controller="MicroprocessorStore" asp-action="UpdateAvailabilityForStore">
+                        <td><input type="text" name="price" value="@availability.Price" /></td>
+                        <td><input type="text" name="quantity" value="@availability.Quantity" /></td>
+                        <td>
+                            <input type="hidden" name="availabilityid" value="@availability.Id" />
+                            <input type="hidden" name="storeid" value="@Model.Id" />
+                            <input type="hidden" name="microprocessorid" value="@availability.Microprocessor.Id" />
+                            <button type="submit">Update</button>
+                        </td>
+                    </form>
                 </tr>
             }
         </tbody>

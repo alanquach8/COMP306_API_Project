@@ -1,0 +1,18 @@
+﻿@model Microprocessor
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    <h3>@ViewBag.Message</h3>
+}
+
+<h1>Update Form For Microprocessor ID = @Model.Id:</h1>
+
+<form method="post" asp-controller="MicroprocessorStore" asp-action="UpdateMicroprocessorInfo">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <label>Name:</label><input type="text" name="name" value="@Model.Name" />
+    <br />
+    <label>Description:</label><input type="text" name="description" value="@Model.Description" />
+    <br />
+    <button type="submit">Update</button>
+    <a asp-controller="MicroprocessorStore" asp-action="Microprocessors">Cancel</a>
+</form>
