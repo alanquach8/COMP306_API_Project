@@ -25,7 +25,8 @@
                     <td>@microprocessor.Description</td>
                     <td>
                         <a asp-controller="MicroprocessorStore" asp-action="AvailabilitiesForMicroprocessor" asp-route-id="@microprocessor.Id">Availabilities</a> |
-                        <a asp-controller="MicroprocessorStore" asp-action="UpdateMicroprocessor" asp-route-id="@microprocessor.Id">Update</a>
+                        <a asp-controller="MicroprocessorStore" asp-action="UpdateMicroprocessor" asp-route-id="@microprocessor.Id">Update</a> |
+                        <a asp-controller="MicroprocessorStore" asp-action="DeleteMicroprocessor" asp-route-id="@microprocessor.Id">Delete</a>
                     </td>
                 </tr>
             }

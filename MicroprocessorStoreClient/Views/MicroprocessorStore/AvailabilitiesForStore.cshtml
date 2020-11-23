@@ -18,6 +18,7 @@
                 <th>Price</th>
                 <th>Quantity</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@
                             <button type="submit">Update</button>
                         </td>
                     </form>
+                    <td><a asp-controller="MicroprocessorStore" asp-action="DeleteStoreAvailability" asp-route-avilabilityid="@availability.Id" asp-route-storeid="@Model.Id">Delete</a></td>
                 </tr>
             }
         </tbody>

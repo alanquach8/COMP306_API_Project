@@ -328,5 +328,102 @@ namespace MicroprocessorStoreClient.Controllers
             }
             return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = microprocessorid });
         }
+
+        public async Task<IActionResult> DeleteStoreAsync(int id)
+        {
+            // DELETE ALL AVAILABILITIES FIRST WITH STOREID = ID
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                HttpResponseMessage response;
+                response = await client.DeleteAsync("/api/DeleteStore/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Stores");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return RedirectToAction("Stores");
+        }
+
+        public async Task<IActionResult> DeleteMicroprocessorAsync(int id)
+        {
+            // DELETE ALL AVAILABILITIES FIRST WITH MICROPROCESSORID = ID
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                HttpResponseMessage response;
+                response = await client.DeleteAsync("/api/DeleteMicroprocessor/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Microprocessors");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return RedirectToAction("Microprocessors");
+        }
+
+
+
+
+
+        public async Task<IActionResult> DeleteStoreAvailabilityAsync(int avilabilityid, int storeid)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                HttpResponseMessage response;
+                response = await client.DeleteAsync("/api/DeleteAvailability/" + avilabilityid.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AvailabilitiesForStore", new { id = storeid });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return RedirectToAction("AvailabilitiesForStore", new { id = storeid });
+        }
+        public async Task<IActionResult> DeleteMicroprocessorAvailabilityAsync(int avilabilityid, int microprocessorid)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                HttpResponseMessage response;
+                response = await client.DeleteAsync("/api/DeleteAvailability/" + avilabilityid.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = microprocessorid });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = microprocessorid });
+        }
     }
 }
