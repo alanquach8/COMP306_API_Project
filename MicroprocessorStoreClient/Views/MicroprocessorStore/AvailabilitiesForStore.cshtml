@@ -1,0 +1,33 @@
+﻿@model Store
+
+<h1>@Model.Name</h1>
+
+<h2>Availabilities</h2>
+@if(Model.NumberOfAvailability > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AvailabilityForStore availability in Model.Availability)
+            {
+                <tr>
+                    <td>@availability.Microprocessor.Name</td>
+                    <td>@availability.Microprocessor.Description</td>
+                    <td>@availability.Price</td>
+                    <td>@availability.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>This store has no availailities at the moment.</p>
+}

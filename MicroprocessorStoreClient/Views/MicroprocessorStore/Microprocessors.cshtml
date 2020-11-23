@@ -23,7 +23,9 @@
                     <td>@microprocessor.Id</td>
                     <td>@microprocessor.Name</td>
                     <td>@microprocessor.Description</td>
-                    <td></td>
+                    <td>
+                        <a asp-controller="MicroprocessorStore" asp-action="AvailabilitiesForMicroprocessor" asp-route-id="@microprocessor.Id">Availabilities</a>
+                    </td>
                 </tr>
             }
         </tbody>

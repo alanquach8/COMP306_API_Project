@@ -63,5 +63,55 @@ namespace MicroprocessorStoreClient.Controllers
             }
             return View(microprocessors);
         }
+
+        public async Task<IActionResult> AvailabilitiesForStore(int id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Store store = new Store();
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                response = await client.GetAsync("/api/GetStoreAvailabilities/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    store = JsonConvert.DeserializeObject<Store>(json);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return View(store);
+        }
+
+        public async Task<IActionResult> AvailabilitiesForMicroprocessor(int id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Microprocessor microprocessor = new Microprocessor();
+            try
+            {
+                string json;
+                HttpResponseMessage response;
+                response = await client.GetAsync("/api/GetMicroprocessorAvailabilities/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    json = await response.Content.ReadAsStringAsync();
+                    microprocessor = JsonConvert.DeserializeObject<Microprocessor>(json);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return View(microprocessor);
+        }
     }
 }

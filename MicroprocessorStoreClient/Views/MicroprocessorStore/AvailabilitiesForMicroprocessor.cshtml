@@ -1,0 +1,33 @@
+﻿@model Microprocessor
+
+<h1>@Model.Name</h1>
+
+<h2>Availabilities</h2>
+@if (Model.NumberOfAvailability > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AvailabilityForMicroprocessor availability in Model.Availability)
+            {
+                <tr>
+                    <td>@availability.Store.Name</td>
+                    <td>@availability.Store.Address</td>
+                    <td>@availability.Price</td>
+                    <td>@availability.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>This microprocessor is not available at any stores at the moment.</p>
+}

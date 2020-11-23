@@ -10,5 +10,8 @@ namespace MicroprocessorStoreClient.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+
+        public int NumberOfAvailability { get; set; }
+        public IEnumerable<AvailabilityForStore> Availability { get; set; }
     }
 }
