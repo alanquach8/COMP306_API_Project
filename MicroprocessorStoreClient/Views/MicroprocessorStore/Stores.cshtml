@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Store>
+
+<a asp-controller="MicroprocessorStore" asp-action="Stores">Stores</a>
+<a asp-controller="MicroprocessorStore" asp-action="Microprocessors">Microprocessors</a>
+
+<h1>Stores</h1>
+
+@if (Model.Count() > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Store store in Model)
+            {
+                <tr>
+                    <td>@store.Id</td>
+                    <td>@store.Name</td>
+                    <td>@store.Address</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There are currently no stores in the database</p>
+}

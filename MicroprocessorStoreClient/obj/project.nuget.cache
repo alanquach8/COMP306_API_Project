@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9/I5vUdqp1RnjvO2A7eqRgDipbfJMh2djvnia6fpfXjjDNVkebTDuKPsMFTHmr9e8OxfOAWPfceXniW11tJivQ==",
+  "dgSpecHash": "tWDZyC/YQ3cVmhWin91421t/EneU/4hnYboYcKRw2P0tNGc06ij3hRh2EkYEMoYktWufjjETEuNlVmrWU+h2ow==",
   "success": true,
   "projectFilePath": "C:\\Users\\alanq\\Desktop\\COMP306 - API Project\\MicroprocessorStoreAPIProject\\MicroprocessorStoreClient\\MicroprocessorStoreClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\alanq\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

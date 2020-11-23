@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Microprocessor>
+
+<a asp-controller="MicroprocessorStore" asp-action="Stores">Stores</a>
+<a asp-controller="MicroprocessorStore" asp-action="Microprocessors">Microprocessors</a>
+
+<h1>Microprocessors</h1>
+
+@if (Model.Count() > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Microprocessor microprocessor in Model)
+            {
+                <tr>
+                    <td>@microprocessor.Id</td>
+                    <td>@microprocessor.Name</td>
+                    <td>@microprocessor.Description</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There are currently no microprocessors in the database</p>
+}
