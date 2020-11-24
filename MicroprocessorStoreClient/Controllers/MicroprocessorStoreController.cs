@@ -13,7 +13,8 @@ namespace MicroprocessorStoreClient.Controllers
 {
     public class MicroprocessorStoreController : Controller
     {
-        public static string baseUrl = "https://localhost:44369/"; // CHANGE
+        //public static string baseUrl = "https://localhost:44369/";
+        public static string baseUrl = "http://microprocessorstoreapiproject-test.us-east-2.elasticbeanstalk.com/";
 
         public async Task<IActionResult> StoresAsync()
         {

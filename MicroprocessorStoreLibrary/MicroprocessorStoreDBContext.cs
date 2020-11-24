@@ -20,7 +20,8 @@ namespace MicroprocessorStoreLibrary
         public virtual DbSet<Availability> Availability { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server = localhost; port = 3306; database = COMP306ProjectLocalDB; user = root; password = password");
+            //optionsBuilder.UseMySQL("server = localhost; port = 3306; database = COMP306ProjectLocalDB; user = root; password = password");
+            optionsBuilder.UseMySQL("server = comp306apiproject.clbcc2qc71so.us-east-2.rds.amazonaws.com; port = 3306; database = MicroprocessorStore; user = admin; password = password");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
