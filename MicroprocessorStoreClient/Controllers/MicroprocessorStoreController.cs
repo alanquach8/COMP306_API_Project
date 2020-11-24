@@ -14,7 +14,9 @@ namespace MicroprocessorStoreClient.Controllers
     public class MicroprocessorStoreController : Controller
     {
         //public static string baseUrl = "https://localhost:44369/";
-        public static string baseUrl = "http://microprocessorstoreapiproject-test.us-east-2.elasticbeanstalk.com/";
+        //public static string baseUrl = "http://microprocessorstoreapiproject-test.us-east-2.elasticbeanstalk.com/";
+        public static string baseUrl = "https://aquach8-eval-test.apigee.net/comp306projectproxy/";
+        public static string apikey = "qn1bTIG0lRo6Xc1auXmZnV4tRqOYAw3G";
 
         public async Task<IActionResult> StoresAsync()
         {
@@ -22,12 +24,13 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             IEnumerable<Store> stores = new List<Store>();
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetStores");
+                response = await client.GetAsync(baseUrl + "/api/GetStores");
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -47,12 +50,13 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             IEnumerable<Microprocessor> microprocessors = new List<Microprocessor>();
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetMicroprocessors");
+                response = await client.GetAsync(baseUrl + "/api/GetMicroprocessors");
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -72,12 +76,13 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             Store store = new Store();
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetStoreAvailabilities/" + id.ToString());
+                response = await client.GetAsync(baseUrl + "/api/GetStoreAvailabilities/" + id.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -103,12 +108,13 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             Microprocessor microprocessor = new Microprocessor();
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetMicroprocessorAvailabilities/" + id.ToString());
+                response = await client.GetAsync(baseUrl + "/api/GetMicroprocessorAvailabilities/" + id.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -134,12 +140,13 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             Store store = new Store();
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetStore/" + id.ToString());
+                response = await client.GetAsync(baseUrl + "/api/GetStore/" + id.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -171,6 +178,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -178,7 +186,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(store);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PutAsync("/api/UpdateStore/" + Request.Form["Id"].ToString(), content);
+                response = await client.PutAsync(baseUrl + "/api/UpdateStore/" + Request.Form["Id"].ToString(), content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("UpdateStore", new { id = store.Id, success = true });
@@ -197,12 +205,13 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             Microprocessor microprocessor = new Microprocessor();
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetMicroprocessor/" + id.ToString());
+                response = await client.GetAsync(baseUrl + "/api/GetMicroprocessor/" + id.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -234,6 +243,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -241,7 +251,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(microprocessor);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PutAsync("/api/UpdateMicroprocessor/" + Request.Form["Id"].ToString(), content);
+                response = await client.PutAsync(baseUrl + "/api/UpdateMicroprocessor/" + Request.Form["Id"].ToString(), content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("UpdateMicroprocessor", new { id = microprocessor.Id, success = true });
@@ -272,6 +282,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -279,7 +290,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(availability);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PutAsync("/api/UpdateAvailability/" + availabilityid.ToString(), content);
+                response = await client.PutAsync(baseUrl + "/api/UpdateAvailability/" + availabilityid.ToString(), content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AvailabilitiesForStore", new { id = storeid, success = true });
@@ -310,6 +321,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -317,7 +329,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(availability);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PutAsync("/api/UpdateAvailability/" + availabilityid.ToString(), content);
+                response = await client.PutAsync(baseUrl + "/api/UpdateAvailability/" + availabilityid.ToString(), content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = microprocessorid, success = true });
@@ -337,10 +349,11 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             try
             {
                 HttpResponseMessage response;
-                response = await client.DeleteAsync("/api/DeleteStore/" + id.ToString());
+                response = await client.DeleteAsync(baseUrl + "/api/DeleteStore/" + id.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Stores");
@@ -361,10 +374,11 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             try
             {
                 HttpResponseMessage response;
-                response = await client.DeleteAsync("/api/DeleteMicroprocessor/" + id.ToString());
+                response = await client.DeleteAsync(baseUrl + "/api/DeleteMicroprocessor/" + id.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Microprocessors");
@@ -384,10 +398,11 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             try
             {
                 HttpResponseMessage response;
-                response = await client.DeleteAsync("/api/DeleteAvailability/" + avilabilityid.ToString());
+                response = await client.DeleteAsync(baseUrl + "/api/DeleteAvailability/" + avilabilityid.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AvailabilitiesForStore", new { id = storeid });
@@ -406,10 +421,11 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             try
             {
                 HttpResponseMessage response;
-                response = await client.DeleteAsync("/api/DeleteAvailability/" + avilabilityid.ToString());
+                response = await client.DeleteAsync(baseUrl + "/api/DeleteAvailability/" + avilabilityid.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = microprocessorid });
@@ -440,6 +456,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -447,7 +464,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(store);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PostAsync("/api/AddStore", content);
+                response = await client.PostAsync(baseUrl + "/api/AddStore", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Stores");
@@ -477,6 +494,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -484,7 +502,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(microprocessor);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PostAsync("/api/AddMicroprocessor", content);
+                response = await client.PostAsync(baseUrl + "/api/AddMicroprocessor", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Microprocessors");
@@ -497,9 +515,6 @@ namespace MicroprocessorStoreClient.Controllers
             return RedirectToAction("Microprocessors");
         }
 
-
-
-
         public async Task<IActionResult> AddAvailabilityForStoreAsync(int storeId)
         {
             AddAvailabilityForStoreVM vm = new AddAvailabilityForStoreVM();
@@ -508,18 +523,19 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetStore/" + storeId.ToString());
+                response = await client.GetAsync(baseUrl + "/api/GetStore/" + storeId.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
                     vm.Store = JsonConvert.DeserializeObject<Store>(json);
                 }
 
-                response = await client.GetAsync("/api/GetMicroprocessors");
+                response = await client.GetAsync(baseUrl + "/api/GetMicroprocessors");
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -549,6 +565,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -556,7 +573,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(availability);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PostAsync("/api/AddAvailability", content);
+                response = await client.PostAsync(baseUrl + "/api/AddAvailability", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AvailabilitiesForStore", new { id = availability.StoreId });
@@ -577,18 +594,19 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
             try
             {
                 string json;
                 HttpResponseMessage response;
-                response = await client.GetAsync("/api/GetMicroprocessor/" + microprocessorId.ToString());
+                response = await client.GetAsync(baseUrl + "/api/GetMicroprocessor/" + microprocessorId.ToString());
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
                     vm.Microprocessor = JsonConvert.DeserializeObject<Microprocessor>(json);
                 }
 
-                response = await client.GetAsync("/api/GetStores");
+                response = await client.GetAsync(baseUrl + "/api/GetStores");
                 if (response.IsSuccessStatusCode)
                 {
                     json = await response.Content.ReadAsStringAsync();
@@ -618,6 +636,7 @@ namespace MicroprocessorStoreClient.Controllers
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("apikey", apikey);
 
             try
             {
@@ -625,7 +644,7 @@ namespace MicroprocessorStoreClient.Controllers
                 HttpResponseMessage response;
                 json = JsonConvert.SerializeObject(availability);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                response = await client.PostAsync("/api/AddAvailability", content);
+                response = await client.PostAsync(baseUrl + "/api/AddAvailability", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AvailabilitiesForMicroprocessor", new { id = availability.MicroprocessorId });
