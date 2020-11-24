@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<Store>
 
-<a asp-controller="MicroprocessorStore" asp-action="Stores">Stores</a>
-<a asp-controller="MicroprocessorStore" asp-action="Microprocessors">Microprocessors</a>
-
-<h1>Stores</h1>
-<a asp-controller="MicroprocessorStore" asp-action="AddStore">Add A Store</a>
+<div class="heading-with-button">
+    <h1>Stores</h1>
+    <a class="btn btn-primary" asp-controller="MicroprocessorStore" asp-action="AddStore">Add A Store</a>
+</div>
 @if (Model.Count() > 0)
 {
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,9 +23,9 @@
                     <td>@store.Name</td>
                     <td>@store.Address</td>
                     <td>
-                        <a asp-controller="MicroprocessorStore" asp-action="AvailabilitiesForStore" asp-route-id="@store.Id">Availabilities</a> | 
-                        <a asp-controller="MicroprocessorStore" asp-action="UpdateStore" asp-route-id="@store.Id">Update</a> | 
-                        <a asp-controller="MicroprocessorStore" asp-action="DeleteStore" asp-route-id="@store.Id">Delete</a>
+                        <a class="btn btn-primary" asp-controller="MicroprocessorStore" asp-action="AvailabilitiesForStore" asp-route-id="@store.Id">Availabilities</a> | 
+                        <a class="btn btn-warning" asp-controller="MicroprocessorStore" asp-action="UpdateStore" asp-route-id="@store.Id">Update</a> | 
+                        <a class="btn btn-danger" asp-controller="MicroprocessorStore" asp-action="DeleteStore" asp-route-id="@store.Id">Delete</a>
                     </td>
                 </tr>
             }

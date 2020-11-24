@@ -1,10 +1,12 @@
 ﻿
 <h1>Add A Microprocessor</h1>
 <form method="post" asp-controller="MicroprocessorStore" asp-action="AddNewMicroprocessor">
-    <label>Name: </label><input type="text" name="name" />
-    <br />
-    <label>Description: </label><input type="text" name="description" />
-    <br />
-    <button type="submit">Add</button>
-    <a asp-controller="MicroprocessorStore" asp-action="Microprocessors">Cancel</a>
+    <div class="form-group">
+        <label>Name: </label><input class="form-control" type="text" name="name" />
+    </div>
+    <div class="form-group">
+        <label>Description: </label><input class="form-control" type="text" name="description" />
+    </div>
+    <button class="btn btn-primary" type="submit">Add</button>
+    <a class="btn btn-secondary" asp-controller="MicroprocessorStore" asp-action="Microprocessors">Cancel</a>
 </form>

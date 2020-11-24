@@ -7,11 +7,13 @@
     <h3>@ViewBag.Message</h3>
 }
 
-<h2>Availabilities</h2>
-<a asp-controller="MicroprocessorStore" asp-action="AddAvailabilityForMicroprocessor" asp-route-microprocessorId="@Model.Id">Add Availability</a>
+<div class="heading-with-button">
+    <h2>Availabilities</h2>
+    <a class="btn btn-primary" asp-controller="MicroprocessorStore" asp-action="AddAvailabilityForMicroprocessor" asp-route-microprocessorId="@Model.Id">Add Availability</a>
+</div>
 @if (Model.NumberOfAvailability > 0)
 {
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Name</th>
@@ -35,10 +37,10 @@
                             <input type="hidden" name="availabilityid" value="@availability.Id" />
                             <input type="hidden" name="storeid" value="@availability.Store.Id" />
                             <input type="hidden" name="microprocessorid" value="@Model.Id" />
-                            <button type="submit">Update</button>
+                            <button class="btn btn-warning" type="submit">Update</button>
                         </td>
                     </form>
-                    <td><a asp-controller="MicroprocessorStore" asp-action="DeleteMicroprocessorAvailability" asp-route-avilabilityid="@availability.Id" asp-route-microprocessorid="@Model.Id">Delete</a></td>
+                    <td><a class="btn btn-danger" asp-controller="MicroprocessorStore" asp-action="DeleteMicroprocessorAvailability" asp-route-avilabilityid="@availability.Id" asp-route-microprocessorid="@Model.Id">Delete</a></td>
                 </tr>
             }
         </tbody>
